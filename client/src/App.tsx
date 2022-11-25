@@ -1,10 +1,18 @@
 import React from "react";
+import Landing from "./pages/Landing";
+import Anatomy from "./pages/Anatomy";
+import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
 function App() {
     return (
-        <div className="w-screen h-screen flex items-center justify-center text-white bg-[#212121]">
-            <div className="font-bold text-[7vh]">FitBro.</div>
-        </div>
+        <Router>
+            <div className="w-screen h-screen flex flex-col items-center justify-start text-white bg-[#212121] overflow-hidden">
+                <Routes>
+                    <Route path="/" element={<Landing />} />
+                    <Route path="/anatomy" element={<Anatomy />} />
+                </Routes>
+            </div>
+        </Router>
     );
 }
 
