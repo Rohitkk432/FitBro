@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Logo from "../images/fitbro-logo.svg";
+import { Link } from "react-router-dom";
 
 type MyProps = {
     message: string;
@@ -17,12 +18,22 @@ class Navbar extends Component<MyProps, MyState> {
                 </div>
                 {this.props.message !== "landing" && (
                     <div className="flex flex-row items-center justify-end w-[80%] text-[2.7vh]">
-                        <div className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 ${this.props.message!=="anatomy" && "border-none"}`}>Anatomy</div>
-                        <div className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 ${this.props.message!=="workout" && "border-none"}`}>Workout Routines</div>
-                        <div className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 ${this.props.message!=="diet" && "border-none"}`}>Diet Charts</div>
-                        <div className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 ${this.props.message!=="custom" && "border-none"}`}>Custom Charts</div>
-                        <div className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 ${this.props.message!=="bookmark" && "border-none"}`}>Bookmarks</div>
-                        <div className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 border-none`}>Logout Btn</div>
+                        <Link to="/anatomy" className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 ${this.props.message !== "anatomy" && "border-[#50C878]"}`}>
+                            <div>Anatomy</div>
+                        </Link>
+                        <Link to="/workout" className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 ${this.props.message !== "workout" && "border-[#50C878]"}`}>
+                            <div>Workout</div>
+                        </Link>
+                        <Link to="" className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 ${this.props.message !== "diet" && "border-[#50C878]"}`}>
+                            <div>Diet Charts</div>
+                        </Link>
+                        <Link to="" className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 ${this.props.message !== "custom" && "border-[#50C878]"}`}>
+                            <div>Custom Charts</div>
+                        </Link>
+                        <Link to="" className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 ${this.props.message !== "bookmark" && "border-[#50C878]"}`}>
+                            <div>Bookmarks</div>
+                        </Link>
+                        <div className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 border-[#50C878]`}>Logout Btn</div>
                     </div>
                 )}
             </div>
