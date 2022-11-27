@@ -24,11 +24,11 @@ class Navbar extends Component<MyProps, MyState> {
                         <Link to="/workout" className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 ${this.props.message !== "workout" && "border-[#50C878]"}`}>
                             <div>Workout</div>
                         </Link>
-                        <Link to="" className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 ${this.props.message !== "diet" && "border-[#50C878]"}`}>
+                        <Link to="/diet-charts" className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 ${this.props.message !== "diet" && "border-[#50C878]"}`}>
                             <div>Diet Charts</div>
                         </Link>
-                        <Link to="" className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 ${this.props.message !== "custom" && "border-[#50C878]"}`}>
-                            <div>Custom Charts</div>
+                        <Link to="/calories" className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 ${this.props.message !== "calories" && "border-[#50C878]"}`}>
+                            <div>Calories</div>
                         </Link>
                         <Link to="" className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 ${this.props.message !== "bookmark" && "border-[#50C878]"}`}>
                             <div>Bookmarks</div>

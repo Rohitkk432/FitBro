@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Navbar from "../components/Navbar";
-// import ExerciseDetails from "../components/ExerciseDetails";
+import ExerciseDetails from "../components/ExerciseDetails";
 import Exercises from "../components/Exercises";
 import Info from "../components/Info";
 
@@ -11,6 +11,7 @@ type MyState = {
     exercise: string;
     exerciseInfo: string;
     bodyPart: string;
+    hoverPart: string;
 };
 
 class Anatomy extends Component<MyProps, MyState> {
@@ -19,15 +20,16 @@ class Anatomy extends Component<MyProps, MyState> {
         exercise: "",
         exerciseInfo: "",
         bodyPart: "",
+        hoverPart:""
     };
     render() {
         return (
             <>
                 <Navbar message="anatomy" />
                 <div className="flex flex-row items-center justify-evenly w-full h-[92vh] py-[3vh]">
-                    <div className="flex flex-col items-center justify-between h-full w-[30%]">
+                    <div className="flex flex-col items-center justify-between h-full w-[30%] relative">
                         {this.state.rotate && (
-                            <svg width="393" className="h-[85%]" height="700" viewBox="0 0 393 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className="h-[85%]" viewBox="0 0 393 700" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_8_318)">
                                     <path
                                         data-set="abdominals"
@@ -36,6 +38,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "abdominals" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "abdominals" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         data-set="obliques"
@@ -44,6 +48,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "obliques" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "obliques" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         data-set="forearms"
@@ -52,6 +58,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "forearms" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "forearms" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         data-set="biceps"
@@ -60,6 +68,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "biceps" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "biceps" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         data-set="shoulders"
@@ -68,6 +78,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "shoulders" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "shoulders" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         data-set="traps"
@@ -76,6 +88,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "traps" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "traps" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         data-set="chest"
@@ -84,6 +98,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "chest" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "chest" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         data-set="quads"
@@ -92,6 +108,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "quads" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "quads" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         data-set="calves"
@@ -100,6 +118,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "calves" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "calves" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         d="M199.606 214.696C208.035 214.532 213.761 216.014 222.196 218.476H222.19C222.738 218.633 223.052 219.211 222.895 219.759C222.767 220.214 222.353 220.506 221.905 220.506C221.806 220.506 221.707 220.494 221.614 220.465C213.365 218.062 207.755 216.609 199.618 216.772C197.695 216.761 196.565 215.711 195.907 214.06C195.249 215.711 194.13 216.767 192.214 216.772C184.053 216.609 178.443 218.062 170.195 220.465C170.096 220.494 169.997 220.506 169.903 220.506C169.455 220.506 169.047 220.214 168.913 219.759C168.756 219.211 169.07 218.633 169.618 218.476C178.053 216.014 183.779 214.532 192.231 214.696C194.585 214.69 194.765 210.758 194.765 204.767C194.765 204.196 195.231 203.729 195.802 203.729C195.814 203.729 195.827 203.73 195.839 203.733L195.854 203.735L195.857 203.736C195.864 203.737 195.871 203.738 195.878 203.738C195.888 203.74 195.898 203.741 195.907 203.741C195.942 203.735 195.977 203.729 196.012 203.729C196.589 203.729 197.049 204.196 197.049 204.767C197.049 210.758 197.223 214.69 199.606 214.696Z"
@@ -144,7 +164,7 @@ class Anatomy extends Component<MyProps, MyState> {
                             </svg>
                         )}
                         {!this.state.rotate && (
-                            <svg width="393" className="h-[85%]" height="700" viewBox="0 0 393 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <svg className="h-[85%]" viewBox="0 0 393 700" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <g opacity="0.77" clip-path="url(#clip0_8_435)">
                                     <path
                                         data-set="hamstrings"
@@ -153,6 +173,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "hamstrings" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "hamstrings" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         data-set="lowerback"
@@ -161,6 +183,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "lowerback" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "lowerback" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         data-set="glutes"
@@ -169,6 +193,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "glutes" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "glutes" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         data-set="lats"
@@ -177,6 +203,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "lats" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "lats" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         data-set="traps(mid-back)"
@@ -185,6 +213,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "traps(mid-back)" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "traps(mid-back)" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         data-set="traps"
@@ -193,6 +223,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "traps" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "traps" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         data-set="shoulders"
@@ -201,6 +233,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "shoulders" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "shoulders" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         data-set="calves"
@@ -209,6 +243,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "calves" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "calves" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         data-set="triceps"
@@ -217,6 +253,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "triceps" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "triceps" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
                                         data-set="forearms"
@@ -225,6 +263,8 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onClick={() => {
                                             this.setState({ bodyPart: "forearms" });
                                         }}
+                                        onMouseEnter={() => this.setState({ hoverPart: "forearms" })}
+                                        onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path d="M86.1829 238.553C86.1883 238.546 86.1932 238.539 86.1986 238.531V238.542C86.1932 238.545 86.1883 238.55 86.1829 238.553Z" fill="white" />
                                     <path
@@ -271,6 +311,10 @@ class Anatomy extends Component<MyProps, MyState> {
                             }}>
                             Rotate
                         </button>
+                        <div className="absolute top-0 left-[-8%] w-[50%] h-[12%] flex flex-col items-start justify-start text-[2.5vh] font-semibold">
+                            <div>Active : {this.state.bodyPart}</div>
+                            <div>Hover : {this.state.hoverPart}</div>
+                        </div>
                     </div>
                     <div className="flex flex-col items-center justify-start border border-white rounded-[2%] h-full w-[60%] p-[2vh]">
                         <div className="flex flex-row items-center justify-start w-full">
@@ -288,11 +332,14 @@ class Anatomy extends Component<MyProps, MyState> {
                                 }}>
                                 Exercises
                             </button>
+                            <button className={`mr-[2%] px-[5%] py-[1%] rounded-[1vh] text-[2.5vh] font-bold ${this.state.exerciseInfo === "details" ? "bg-[#018749]" : "bg-[#1CAC78] hidden"}`}>
+                                Exercise Details
+                            </button>
                         </div>
                         {this.state.exerciseInfo === "info" && <Info />}
                         {this.state.exerciseInfo === "exercises" && <Exercises />}
 
-                        {/* <ExerciseDetails /> */}
+                        {this.state.exerciseInfo === "details" && <ExerciseDetails />}
                     </div>
                 </div>
             </>

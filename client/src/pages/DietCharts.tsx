@@ -1,29 +1,21 @@
 import React, { Component } from "react";
 import Navbar from "../components/Navbar";
-// import ExerciseDetails from "../components/ExerciseDetails";
-import Exercises from "../components/Exercises";
+import Diets from "../components/Diets";
 import VerticalList from "../components/VerticalList";
 
 type MyProps = {};
 
-type MyState = {
-    exercise: string;
-};
+type MyState = {};
 
-class Workout extends Component<MyProps, MyState> {
-    state: MyState = {
-        exercise: "",
-    };
+class DietCharts extends Component<MyProps, MyState> {
     render() {
         return (
             <>
-                <Navbar message="workout" />
+                <Navbar message="diet" />
                 <div className="flex flex-row items-center justify-evenly w-full h-[92vh] py-[3vh]">
-                    <VerticalList title="Workouts" />
+                    <VerticalList title="Diet Charts" />
                     <div className="flex flex-col items-center justify-start border border-white rounded-[2%] h-full w-[60%] p-[2vh]">
-                        <Exercises />
-
-                        {/* <ExerciseDetails /> */}
+                        <Diets />
                     </div>
                 </div>
             </>
@@ -31,4 +23,4 @@ class Workout extends Component<MyProps, MyState> {
     }
 }
 
-export default Workout;
+export default DietCharts;

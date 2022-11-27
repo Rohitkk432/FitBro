@@ -2,6 +2,8 @@ import React from "react";
 import Landing from "./pages/Landing";
 import Anatomy from "./pages/Anatomy";
 import Workout from "./pages/Workout";
+import Calories from "./pages/Calories";
+import DietCharts from "./pages/DietCharts";
 import { Route, Routes, BrowserRouter as Router } from "react-router-dom";
 
 function App() {
@@ -12,6 +14,8 @@ function App() {
                     <Route path="/" element={<Landing />} />
                     <Route path="/anatomy" element={<Anatomy />} />
                     <Route path="/workout" element={<Workout />} />
+                    <Route path="/calories" element={<Calories />} />
+                    <Route path="/diet-charts" element={<DietCharts />} />
                 </Routes>
             </div>
         </Router>
