@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { XIcon } from "@heroicons/react/solid";
+import { XMarkIcon } from "@heroicons/react/20/solid";
 
 type MyProps = {};
 
@@ -15,7 +15,7 @@ class CalorieItem extends Component<MyProps, MyState> {
                 <div className="w-[15%]">1 bowl</div>
                 <div className="w-[15%]">150 Calories</div>
                 <div className="w-[3%]">
-                    <XIcon className="h-[5vh] w-[5vh]" />
+                    <XMarkIcon className="h-[5vh] w-[5vh]" />
                 </div>
             </div>
         );
