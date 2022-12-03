@@ -19,7 +19,7 @@ class Workout extends Component<MyProps, MyState> {
             <>
                 <Navbar message="workout" />
                 <div className="flex flex-row items-center justify-evenly w-full h-[92vh] py-[3vh]">
-                    <VerticalList title="Workouts" />
+                    {/* <VerticalList title="Workouts" /> */}
                     <div className="flex flex-col items-center justify-start border border-white rounded-[2%] h-full w-[60%] p-[2vh]">
                         <Exercises />
 

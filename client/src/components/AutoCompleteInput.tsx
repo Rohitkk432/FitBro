@@ -4,21 +4,23 @@ import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 
 interface propsExample {
     data: Array<{ id: number; name: string }>;
+    stateData: string;
+    setDataState: React.Dispatch<React.SetStateAction<string>>;
+    disabledState: boolean;
 }
 
-const AutoCompleteInput: React.FC<propsExample> = ({data}) => {
-    const [selected, setSelected] = useState("");
+const AutoCompleteInput: React.FC<propsExample> = ({data,stateData,setDataState,disabledState}) => {
     const [query, setQuery] = useState("");
 
     const filtereddata = query === "" ? data : data.filter((dataItem:any) => dataItem.name.toLowerCase().replace(/\s+/g, "").includes(query.toLowerCase().replace(/\s+/g, "")));
 
     return (
-        <Combobox value={selected} onChange={setSelected}>
+        <Combobox value={stateData} onChange={setDataState} disabled={disabledState}>
             <div className="w-[70%] relative">
                 <div className="relative w-full cursor-default overflow-hidden rounded-[1vh] bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 text-[2.5vh]">
                     <Combobox.Input
                         className="w-full border-none py-[2%] pl-[5%] pr-[15%] text-[2.5vh] leading-5 text-gray-900 focus:ring-0"
-                        displayValue={(dataItem: any) => dataItem.name}
+                        displayValue={(dataItem: any) => dataItem?.name}
                         onChange={(event) => setQuery(event.target.value)}
                     />
                     <Combobox.Button className="absolute inset-y-0 right-0 flex items-center pr-[2%]">

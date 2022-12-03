@@ -1,16 +1,16 @@
 import DietOnADay from "./DietOnADay";
 
 export default class DietChart {
-    private id: string;
-    private name: string;
-    private info: string;
-    private monday: DietOnADay;
-    private tuesday: DietOnADay;
-    private wednesday: DietOnADay;
-    private thursday: DietOnADay;
-    private friday: DietOnADay;
-    private saturday: DietOnADay;
-    private sunday: DietOnADay;
+    id: string;
+    name: string;
+    info: string;
+    monday: DietOnADay;
+    tuesday: DietOnADay;
+    wednesday: DietOnADay;
+    thursday: DietOnADay;
+    friday: DietOnADay;
+    saturday: DietOnADay;
+    sunday: DietOnADay;
     constructor(
         id: string,
         name: string,
@@ -34,41 +34,34 @@ export default class DietChart {
         this.saturday = saturday;
         this.sunday = sunday;
     }
-    getId() {
-        return this.id;
-    }
-    getName() {
-        return this.name;
-    }
-    getInfo() {
-        return this.info;
-    }
-    getMonday() {
-        return this.monday;
-    }
-    getTuesday() {
-        return this.tuesday;
-    }
-    getWednesday() {
-        return this.wednesday;
-    }
-    getThursday() {
-        return this.thursday;
-    }
-    getFriday() {
-        return this.friday;
-    }
-    getSaturday() {
-        return this.saturday;
-    }
-    getSunday() {
-        return this.sunday;
-    }
     //unfinished implementation
-    static getById(id: string) {
-        return 0;
-    }
-    static getByName(name: string) {
-        return 0;
+    public static async getAll() {
+        const rawData = await fetch(`http://localhost:5000/dietchart`).then((res) => res.json());
+        const outputArray = [];
+        for (let i = 0; i < rawData.length; i++) {
+            rawData[i].monday = await DietOnADay.getById(rawData[i].monday);
+            rawData[i].tuesday = await DietOnADay.getById(rawData[i].tuesday);
+            rawData[i].wednesday = await DietOnADay.getById(rawData[i].wednesday);
+            rawData[i].thursday = await DietOnADay.getById(rawData[i].thursday);
+            rawData[i].friday = await DietOnADay.getById(rawData[i].friday);
+            rawData[i].saturday = await DietOnADay.getById(rawData[i].saturday);
+            rawData[i].sunday = await DietOnADay.getById(rawData[i].sunday);
+
+            outputArray.push(
+                new DietChart(
+                    rawData[i]._id,
+                    rawData[i].name,
+                    rawData[i].info,
+                    rawData[i].monday,
+                    rawData[i].tuesday,
+                    rawData[i].wednesday,
+                    rawData[i].thursday,
+                    rawData[i].friday,
+                    rawData[i].saturday,
+                    rawData[i].sunday
+                )
+            );
+        }
+        return outputArray;
     }
 }

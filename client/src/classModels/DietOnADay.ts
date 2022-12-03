@@ -1,10 +1,10 @@
 export default class DietOnADay {
-    private id: string;
-    private breakfast: string;
-    private lunch: string;
-    private snack: string;
-    private dinner: string;
-    private note: string;
+    id: string;
+    breakfast: string;
+    lunch: string;
+    snack: string;
+    dinner: string;
+    note: string;
     constructor(id: string, breakfast: string, lunch: string, snack: string, dinner: string, note: string) {
         this.id = id;
         this.breakfast = breakfast;
@@ -13,26 +13,9 @@ export default class DietOnADay {
         this.dinner = dinner;
         this.note = note;
     }
-    getId() {
-        return this.id;
-    }
-    getBreakfast() {
-        return this.breakfast;
-    }
-    getLunch() {
-        return this.lunch;
-    }
-    getSnack() {
-        return this.snack;
-    }
-    getDinner() {
-        return this.dinner;
-    }
-    getNote() {
-        return this.note;
-    }
     //unfinished implementation
-    static getById(id: string) {
-        return 0;
+    public static async getById(id: string) {
+        const rawData = await fetch(`http://localhost:5000/dietonaday/${id}`).then((res) => res.json());
+        return new DietOnADay(rawData._id, rawData.breakfast, rawData.lunch, rawData.snack, rawData.dinner, rawData.note);
     }
 }
