@@ -10,6 +10,9 @@ import foodCalorie from "./models/foodcalorie";
 import dietOnADay from "./models/dietonaday";
 import dietChart from "./models/dietchart";
 
+import exercise from "./models/exercise";
+import workout from "./models/workout";
+
 router.get("/foodcalorie/:outlet", async (req: Request, res: Response) => {
     try {
         const foodlist = await foodCalorie.find({ outlet: req.params.outlet });
@@ -32,6 +35,24 @@ router.get("/dietchart", async (req: Request, res: Response) => {
     try {
         const Diet = await dietChart.find();
         res.send(Diet);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.get("/exercise/:part", async (req: Request, res: Response) => {
+    try {
+        const exercises = await exercise.find({ bodypart: req.params.part });
+        res.send(exercises);
+    } catch (err) {
+        console.log(err);
+    }
+});
+
+router.get("/workout", async (req: Request, res: Response) => {
+    try {
+        const workouts = await workout.find();
+        res.send(workouts);
     } catch (err) {
         console.log(err);
     }

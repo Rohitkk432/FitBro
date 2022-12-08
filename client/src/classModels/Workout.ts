@@ -1,38 +1,30 @@
-import ExerciseOfWorkout from "./ExerciseOfWorkout";
-
-export default class Workout {
-    private id: string;
-    private name: string;
-    private info: string;
-    private imageLink: string;
-    private exercises: ExerciseOfWorkout[];
-    constructor(id: string, name: string, info: string, imageLink: string, exercises: ExerciseOfWorkout[]) {
+import Exercise from "./Exercise";
+export default class Workout{
+    id: string;
+    name: string;
+    bodyparts: string;
+    constructor(id: string, name: string, bodyparts: string){
         this.id = id;
         this.name = name;
-        this.info = info;
-        this.imageLink = imageLink;
-        this.exercises = exercises;
+        this.bodyparts = bodyparts;
     }
-    getId() {
-        return this.id;
+    public static async getAll(){
+        const rawData = await fetch("http://localhost:5000/workout").then((res) => res.json()).then((data) => {
+            return data;
+        });
+        const outputArray = [];
+        for (let i = 0; i < rawData.length; i++) {
+            outputArray.push(new Workout(rawData[i]._id, rawData[i].label, rawData[i].bodyparts));
+        }
+        return outputArray;
     }
-    getName() {
-        return this.name;
-    }
-    getInfo() {
-        return this.info;
-    }
-    getImageLink() {
-        return this.imageLink;
-    }
-    getExercises() {
-        return this.exercises;
-    }
-    //unfinished implementation
-    static getById(id: string) {
-        return 0;
-    }
-    static getByName(name: string) {
-        return 0;
+    public async getExercises(){
+        let outputArray:any = [];
+        const bodyparts = this.bodyparts.split(",");
+        for (let i = 0; i < bodyparts.length; i++) {
+            const exercises = await Exercise.getByBodyPart(bodyparts[i]);
+            outputArray = [...outputArray, ...exercises]
+        }
+        return outputArray;
     }
 }

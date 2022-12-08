@@ -4,6 +4,8 @@ import ExerciseDetails from "../components/ExerciseDetails";
 import Exercises from "../components/Exercises";
 import Info from "../components/Info";
 
+import exerciseObj from "../classModels/Exercise";
+
 type MyProps = {};
 
 type MyState = {
@@ -12,6 +14,8 @@ type MyState = {
     exerciseInfo: string;
     bodyPart: string;
     hoverPart: string;
+    partData : any;
+    exerciseData: any;
 };
 
 class Anatomy extends Component<MyProps, MyState> {
@@ -20,9 +24,30 @@ class Anatomy extends Component<MyProps, MyState> {
         exercise: "",
         exerciseInfo: "",
         bodyPart: "",
-        hoverPart:""
+        hoverPart: "",
+        partData: [],
+        exerciseData: null
     };
+
+    getData = async (bodyPart: string)=>{
+        const res = await exerciseObj.getByBodyPart(this.state.bodyPart);
+        this.setState({ partData: res });
+    }
+
+    componentDidUpdate(prevProps: any, prevState: any) {
+        if (this.state.bodyPart !== prevState.bodyPart) {
+            if(this.state.bodyPart !== ""){
+                this.getData(this.state.bodyPart);
+            }else{
+                this.setState({ partData: [] });
+            }
+        }
+    }
     render() {
+        const setExerciseData = (data: any) => {
+            this.setState({ exerciseData: data });
+            this.setState({ exerciseInfo: "details" });
+        };
         return (
             <>
                 <Navbar message="anatomy" />
@@ -207,13 +232,13 @@ class Anatomy extends Component<MyProps, MyState> {
                                         onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
-                                        data-set="traps(mid-back)"
+                                        data-set="traps_middle"
                                         d="M231.416 138.295C220.576 158.26 213.797 174.169 209.197 186.042C209.186 186.052 209.186 186.073 209.176 186.083C208.432 187.857 207.777 189.58 207.201 191.262V191.272C206.268 193.778 205.435 196.05 204.691 198.098C200.804 208.787 198.86 214.149 195.774 214.149C192.689 214.149 190.745 208.787 186.857 198.098C186.082 195.968 185.228 193.605 184.254 191.003C184.254 190.993 184.243 190.972 184.233 190.962C183.74 189.534 183.19 188.06 182.572 186.56C182.541 186.489 182.509 186.418 182.478 186.347C182.446 186.255 182.414 186.174 182.373 186.083C177.783 174.21 170.994 158.29 160.154 138.305C161.626 138.987 163.135 139.251 164.817 139.251C166.97 139.251 169.406 138.824 172.361 138.305C177.616 137.38 184.83 136.115 195.769 136.115C206.709 136.115 213.923 137.38 219.188 138.305C222.148 138.824 224.568 139.251 226.722 139.251C228.403 139.251 229.928 138.987 231.406 138.295H231.416Z"
-                                        className={`${this.state.bodyPart === "traps(mid-back)" && !this.state.rotate ? "fill-[#E02D2D]" : "fill-[#313131] hover:fill-[#E98888]"}`}
+                                        className={`${this.state.bodyPart === "traps_middle" && !this.state.rotate ? "fill-[#E02D2D]" : "fill-[#313131] hover:fill-[#E98888]"}`}
                                         onClick={() => {
-                                            this.setState({ bodyPart: "traps(mid-back)" });
+                                            this.setState({ bodyPart: "traps_middle" });
                                         }}
-                                        onMouseEnter={() => this.setState({ hoverPart: "traps(mid-back)" })}
+                                        onMouseEnter={() => this.setState({ hoverPart: "traps_middle" })}
                                         onMouseLeave={() => this.setState({ hoverPart: "" })}
                                     />
                                     <path
@@ -337,9 +362,9 @@ class Anatomy extends Component<MyProps, MyState> {
                             </button>
                         </div>
                         {this.state.exerciseInfo === "info" && <Info />}
-                        {this.state.exerciseInfo === "exercises" && <Exercises />}
+                        {this.state.exerciseInfo === "exercises" && <Exercises bodypart={this.state.bodyPart} partData={this.state.partData} setExerciseData={setExerciseData} />}
 
-                        {this.state.exerciseInfo === "details" && <ExerciseDetails />}
+                        {this.state.exerciseInfo === "details" && <ExerciseDetails exerciseData={this.state.exerciseData} />}
                     </div>
                 </div>
             </>
