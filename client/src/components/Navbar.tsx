@@ -30,7 +30,9 @@ class Navbar extends Component<MyProps, MyState> {
                         <Link to="/calories" className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 ${this.props.message !== "calories" && "border-[#50C878]"}`}>
                             <div>Calories</div>
                         </Link>
-                        <div className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 border-[#50C878]`}>Logout Btn</div>
+                        <Link to="/" className={`mx-[1%] px-[0.5%] py-[1%] border-b-2 border-[#50C878]`}>
+                            <div>Go to Home</div>
+                        </Link>
                     </div>
                 )}
             </div>

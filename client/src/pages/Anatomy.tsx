@@ -37,8 +37,10 @@ class Anatomy extends Component<MyProps, MyState> {
     componentDidUpdate(prevProps: any, prevState: any) {
         if (this.state.bodyPart !== prevState.bodyPart) {
             if(this.state.bodyPart !== ""){
+                this.setState({ exerciseInfo: "info" });
                 this.getData(this.state.bodyPart);
             }else{
+                this.setState({ exerciseInfo: "" });
                 this.setState({ partData: [] });
             }
         }
@@ -344,14 +346,18 @@ class Anatomy extends Component<MyProps, MyState> {
                     <div className="flex flex-col items-center justify-start border border-white rounded-[2%] h-full w-[60%] p-[2vh]">
                         <div className="flex flex-row items-center justify-start w-full">
                             <button
-                                className={`mr-[2%] px-[5%] py-[1%] rounded-[1vh] text-[2.5vh] font-bold ${this.state.exerciseInfo === "info" ? "bg-[#018749]" : "bg-[#1CAC78]"}`}
+                                className={`mr-[2%] px-[5%] py-[1%] rounded-[1vh] text-[2.5vh] font-bold ${this.state.exerciseInfo === "info" ? "bg-[#018749]" : "bg-[#1CAC78]"} ${
+                                    this.state.exerciseInfo === "" ? "hidden" : ""
+                                }`}
                                 onClick={() => {
                                     this.setState({ exerciseInfo: "info" });
                                 }}>
                                 Basic Info
                             </button>
                             <button
-                                className={`mr-[2%] px-[5%] py-[1%] rounded-[1vh] text-[2.5vh] font-bold ${this.state.exerciseInfo === "exercises" ? "bg-[#018749]" : "bg-[#1CAC78]"}`}
+                                className={`mr-[2%] px-[5%] py-[1%] rounded-[1vh] text-[2.5vh] font-bold ${this.state.exerciseInfo === "exercises" ? "bg-[#018749]" : "bg-[#1CAC78]"} ${
+                                    this.state.exerciseInfo === "" ? "hidden" : ""
+                                }`}
                                 onClick={() => {
                                     this.setState({ exerciseInfo: "exercises" });
                                 }}>
