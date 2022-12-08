@@ -3,17 +3,19 @@ import Navbar from "../components/Navbar";
 import ExerciseDetails from "../components/ExerciseDetails";
 import Exercises from "../components/Exercises";
 import VerticalList from "../components/VerticalList";
+import InstructionComponent from "../components/InstructionComponent";
 
 import WorkoutClass from "../classModels/Workout";
+import ExerciseClass from "../classModels/Exercise";
 
 type MyProps = {};
 
 type MyState = {
     exercise: string;
-    workoutData: any;
-    activeWorkout: any;
-    workoutExercises: any;
-    exerciseData: any;
+    workoutData: WorkoutClass[];
+    activeWorkout: WorkoutClass | null;
+    workoutExercises: ExerciseClass[];
+    exerciseData: ExerciseClass | null;
     exerciseInfo: string;
 };
 
@@ -34,6 +36,7 @@ class Workout extends Component<MyProps, MyState> {
         this.getAllData();
     }
     getExercisesData = async () => {
+        if (this.state.activeWorkout === null) return;
         const res = await this.state.activeWorkout.getExercises();
         this.setState({ workoutExercises: res });
     };
@@ -64,7 +67,9 @@ class Workout extends Component<MyProps, MyState> {
                     <div className="flex flex-col items-center justify-start border border-white rounded-[2%] h-full w-[60%] p-[2vh]">
                         <div className="flex flex-row items-center justify-start w-full">
                             <button
-                                className={`mr-[2%] px-[5%] py-[1%] rounded-[1vh] text-[2.5vh] font-bold ${this.state.exerciseInfo === "exercises" ? "bg-[#018749]" : "bg-[#1CAC78]"} ${this.state.exerciseInfo === "" ? "hidden" : ""}`}
+                                className={`mr-[2%] px-[5%] py-[1%] rounded-[1vh] text-[2.5vh] font-bold ${this.state.exerciseInfo === "exercises" ? "bg-[#018749]" : "bg-[#1CAC78]"} ${
+                                    this.state.exerciseInfo === "" ? "hidden" : ""
+                                }`}
                                 onClick={() => {
                                     this.setState({ exerciseInfo: "exercises" });
                                 }}>
@@ -74,7 +79,10 @@ class Workout extends Component<MyProps, MyState> {
                                 Exercise Details
                             </button>
                         </div>
-                        {this.state.exerciseInfo === "exercises" && <Exercises bodypart={this.state.activeWorkout.name} partData={this.state.workoutExercises} setExerciseData={setExerciseData} />}
+                        {this.state.exerciseInfo === "" && <InstructionComponent instruction="'CLICK' on the workouts on the left panel to view exercises and details." />}
+                        {this.state.exerciseInfo === "exercises" && (
+                            <Exercises bodypart={this.state.activeWorkout !== null ? this.state.activeWorkout.name : ""} partData={this.state.workoutExercises} setExerciseData={setExerciseData} />
+                        )}
 
                         {this.state.exerciseInfo === "details" && <ExerciseDetails exerciseData={this.state.exerciseData} />}
                     </div>

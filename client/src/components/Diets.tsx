@@ -1,9 +1,10 @@
 import React, { Component } from "react";
+
 import ExtendedDietChart from "../classModels/ExtendedDietChart";
 import DietChart from "../classModels/DietChart";
 
 type MyProps = {
-    data: any;
+    data: DietChart | null;
 };
 
 type MyState = {

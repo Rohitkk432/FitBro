@@ -3,13 +3,15 @@ import Navbar from "../components/Navbar";
 import { PlusIcon, ArrowPathIcon } from "@heroicons/react/20/solid";
 import CalorieItem from "../components/CalorieItem";
 import CalorieInput from "../components/CalorieInput";
+import InstructionComponent from "../components/InstructionComponent";
+
 import CalorieInFood from "../classModels/CaloriesInFood";
 
 type MyProps = {};
 
 type MyState = {
     addModal: boolean;
-    calorieData: any;
+    calorieData: CalorieInFood[];
     totalCalories: number;
 };
 
@@ -45,6 +47,7 @@ class Calories extends Component<MyProps, MyState> {
                 <Navbar message="calories" />
                 <div className="flex flex-col justify-between items-center w-full h-[92vh] py-[3vh]">
                     <div className="w-[80%] h-[85%] overflow-y-scroll customScrollbar">
+                        {this.state.calorieData.length === 0 && <InstructionComponent instruction="'CLICK' on '+' button in bottom left corner to add food items from various campus food outlets and check the total calories on the bottom right corner. You can also remove items by 'CLICKING' the 'X' button on it or remove all using 'Reset' button." />}
                         {this.state.calorieData.length !== 0 &&
                             this.state.calorieData.map((data: any, index: number) => <CalorieItem key={index} index={index} foodItem={data} removeCalorieData={removeCalorieData} />)}
                     </div>

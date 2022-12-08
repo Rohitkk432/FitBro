@@ -33,7 +33,6 @@ const CalorieInput: React.FC<MyProps> = ({ closeModal,addToCalorieData }) => {
     const submitCalorieData = () => {
         if(quantity!==0 && foodItem!==undefined && outlet!==undefined){
             const newData = CaloriesInFood.recalculateCalorie(foodItem,quantity);
-            console.log(newData);
             addToCalorieData(newData);
             setFoodData([]);
             setFoodItem(undefined);

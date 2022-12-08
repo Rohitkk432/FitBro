@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { XMarkIcon } from "@heroicons/react/20/solid";
 
+import CaloriesInFood from "../classModels/CaloriesInFood";
+
 type MyProps = {
-    foodItem: any;
+    foodItem: CaloriesInFood;
     index: number;
     removeCalorieData: (data: any) => void;
 };
@@ -17,11 +19,11 @@ class CalorieItem extends Component<MyProps, MyState> {
                 <div className="w-[20%]">{this.props.foodItem.outlet}</div>
                 <div className="w-[35%]">{this.props.foodItem.name}</div>
                 <div className="w-[15%]">
-                    {this.props.foodItem.quantity} {this.props.foodItem.unit.slice(0,11)}
+                    {this.props.foodItem.quantity} {this.props.foodItem.unit.slice(0, 11)}
                 </div>
                 <div className="w-[15%]">{this.props.foodItem.calories} Calories</div>
                 <div className="w-[3%]">
-                    <XMarkIcon onClick={()=>this.props.removeCalorieData(this.props.foodItem)} className="h-[5vh] w-[5vh]" />
+                    <XMarkIcon onClick={() => this.props.removeCalorieData(this.props.foodItem)} className="h-[5vh] w-[5vh]" />
                 </div>
             </div>
         );

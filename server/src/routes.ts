@@ -12,6 +12,7 @@ import dietChart from "./models/dietchart";
 
 import exercise from "./models/exercise";
 import workout from "./models/workout";
+import bodyPartInfo from "./models/bodypartinfo";
 
 router.get("/foodcalorie/:outlet", async (req: Request, res: Response) => {
     try {
@@ -58,6 +59,14 @@ router.get("/workout", async (req: Request, res: Response) => {
     }
 });
 
+router.get("/partinfo/:part", async (req: Request, res: Response) => {
+    try {
+        const info = await bodyPartInfo.find({ bodypart: req.params.part });
+        res.send(info);
+    } catch (err) {
+        console.log(err);
+    }
+});
 // //-----Example-----
 // //models
 // const users = require("./models/users");
