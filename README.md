@@ -1,5 +1,6 @@
 # <img src="https://raw.githubusercontent.com/Rohitkk432/FitBro/d2f70cac4d9e999ebd346413b586dc6b591fc3c9/client/src/images/fitbro-logo.svg" height="60" > FitBro
 All in one solution for getting Excercises for a Specific Body part , Workout Routines, Diet Charts, and much more.
+[Video Demo](https://drive.google.com/file/d/1iTcLurThHMo4bTwuGm4lHEjutDIU9vJc/view?usp=sharing)
 
 ## About
 - OOP Group 1 project.
