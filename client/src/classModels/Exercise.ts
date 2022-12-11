@@ -15,7 +15,7 @@ export default class Exercise {
     }
     //unfinished implementation
     public static async getByBodyPart(bodypart: string) {
-        const rawData = await fetch(`http://localhost:5000/exercise/${bodypart}`)
+        const rawData = await fetch(`https://fitbro-server.onrender.com/exercise/${bodypart}`)
             .then((res) => res.json())
             .then((data) => {
                 return data;

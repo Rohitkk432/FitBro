@@ -11,7 +11,7 @@ export default class DietChart {
         this.dietDaysIdMap = dietDaysIdMap;
     }
     public static async getAll() {
-        const rawData = await fetch(`http://localhost:5000/dietchart`).then((res) => res.json());
+        const rawData = await fetch(`https://fitbro-server.onrender.com/dietchart`).then((res) => res.json());
         const outputArray = [];
         for (let i = 0; i < rawData.length; i++) {
             outputArray.push(

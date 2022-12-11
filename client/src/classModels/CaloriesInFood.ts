@@ -13,9 +13,9 @@ export default class CaloriesInFood {
         this.unit = unit;
         this.calories = calories;
     }
-    
+
     public static async getByFoodOutlet(foodOutlet: string) {
-        const rawData = await fetch(`http://localhost:5000/foodcalorie/${foodOutlet}`).then((res) => res.json());
+        const rawData = await fetch(`https://fitbro-server.onrender.com/foodcalorie/${foodOutlet}`).then((res) => res.json());
         const returnArray = rawData.map((food: any) => {
             return new CaloriesInFood(food._id, food.outlet, food.name, food.quantity, food.unit, food.calories);
         });

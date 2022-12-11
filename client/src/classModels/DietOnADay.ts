@@ -15,7 +15,7 @@ export default class DietOnADay {
     }
     //unfinished implementation
     public static async getById(id: string) {
-        const rawData = await fetch(`http://localhost:5000/dietonaday/${id}`).then((res) => res.json());
+        const rawData = await fetch(`https://fitbro-server.onrender.com/dietonaday/${id}`).then((res) => res.json());
         return new DietOnADay(rawData._id, rawData.breakfast, rawData.lunch, rawData.snack, rawData.dinner, rawData.note);
     }
 }
