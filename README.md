@@ -52,6 +52,13 @@ npm run start --watch
 ## Class Diagram
 ![FitBroClassDiagram](https://user-images.githubusercontent.com/74586376/206570502-283401a2-8714-442a-bfd0-ad8b075c969d.jpg)
 
+## UML State Diagram
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/74586376/206903590-50d47ae7-0f69-48f6-b109-afeb3545f6d2.png">
+
+## Sequence Diagram
+<img width="700" alt="image" src="https://user-images.githubusercontent.com/74586376/206903634-e138dd92-940d-45ca-a700-224cc664a2a7.png">
+
+
 ## Database NoSQL
 ### Note : NoSQL database (MongoDB Atlas) here foreign key is just refered as _id used there.
 ![Fitbro database](https://user-images.githubusercontent.com/74586376/206573546-8225d9c2-d8d3-461a-ba8b-9da95a8e71c0.png)
