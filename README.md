@@ -18,7 +18,8 @@ All in one solution for getting Excercises for a Specific Body part , Workout Ro
 
 ## Installation
 ### Server
-- create a .env file in server folder and add your MONGODB_URI variable, and the data to the database as per schema.
+- MongoDB URI is added with readonly permissions. 
+- if u want to change DB change .env file in server folder and add your MONGODB_URI variable, and the data to the database as per schema.
 - commands for running the server
 ```
 cd server
